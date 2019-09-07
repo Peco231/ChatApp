@@ -33,9 +33,9 @@ namespace ChatApp
             services.AddSignalR();
 
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
-            .AddEntityFrameworkStores<IdentityDbContext>()
-            .AddDefaultUI()
-            .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
