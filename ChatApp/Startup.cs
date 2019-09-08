@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatApp.Data;
 using ChatApp.Hubs;
+using ChatApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -32,8 +35,11 @@ namespace ChatApp
             }));
             services.AddSignalR();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
-                .AddEntityFrameworkStores<IdentityDbContext>()
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
         }
@@ -53,6 +59,7 @@ namespace ChatApp
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseCors("PolicyCors");
+            app.UseAuthentication();
             app.UseSignalR(route =>
             {
                 route.MapHub<ChatHub>("/chatHub");
