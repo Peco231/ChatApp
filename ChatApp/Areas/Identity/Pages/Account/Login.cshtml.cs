@@ -78,7 +78,7 @@ namespace ChatApp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToPage("/Chat");
+                    return RedirectToPage("/SelectUser");
                 }
                 if (result.RequiresTwoFactor)
                 {
