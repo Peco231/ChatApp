@@ -1,0 +1,40 @@
+﻿@page
+@model ChatApp.Pages.ChatModel
+@{
+    ViewData["Title"] = "Chat";
+}
+
+
+<h1> @Model.currentUser.FirstName, welcome to Chat! </h1>
+<div onload="fillUsers()">
+    <form action="action_form.php" method="get">
+        <br />
+        <div class="row">
+            <div class="col-lg-3">
+                <label> Select a user to chat with: </label>
+                <input type="text" list="users" name="users" class="form-control">
+                <datalist id="users">
+                    <option value="Berlin" />
+                    <option value="Los Angeles" />
+                    <option value="Moscow" />
+                    <option value="Paris" />
+                </datalist>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-3">
+                <button type="submit" class="btn btn-success">Let's chat</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script language="javascript">
+    function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "database/update.html", true);
+        xhr.send(null);
+        /* ignore result */
+    }
+</script>
