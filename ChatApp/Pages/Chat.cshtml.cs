@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ChatApp.Pages
 {
@@ -37,20 +39,5 @@ namespace ChatApp.Pages
             
         }
 
-        
-        public List<UserSearchResult> getUserSearchResult (string tmp)
-        {
-            List<UserSearchResult> users = new List<UserSearchResult>();
-            
-            foreach(ApplicationUser user in Users)
-            {
-                if(user.FullName.Contains(tmp))
-                {
-                    users.Add(new UserSearchResult(user.Id, user.FullName));
-                }
-            }
-
-            return users;
-        }
     }
 }

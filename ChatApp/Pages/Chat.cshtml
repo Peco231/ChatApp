@@ -4,24 +4,27 @@
     ViewData["Title"] = "Chat";
 }
 
+@*<option value="Full Name" label="email"></option>*@
 
 <h1> @Model.currentUser.FirstName, welcome to Chat! </h1>
-<div onload="fillUsers()">
+<div>
     <form action="action_form.php" method="get">
         <br />
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <label> Select a user to chat with: </label>
-                <input type="text" list="users" name="users" class="form-control">
-                <datalist id="users">
-                    <option value="Berlin" />
-                    <option value="Los Angeles" />
-                    <option value="Moscow" />
-                    <option value="Paris" />
+                <input type="text" id="inputUserData" list="userList" class="form-control">
+                <datalist id="userList" class="col-lg-4">
+                    @foreach(var user in Model.Users)
+                    {
+                        if(user.Id != Model.currentUser.Id) { 
+                            <option value=@user.FullName label=@user.Email id=@user.Id></option>
+                        }
+                    }
                 </datalist>
             </div>
         </div>
-        <br/>
+        <br />
         <div class="row">
             <div class="col-lg-3">
                 <button type="submit" class="btn btn-success">Let's chat</button>
@@ -30,11 +33,3 @@
     </form>
 </div>
 
-<script language="javascript">
-    function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "database/update.html", true);
-        xhr.send(null);
-        /* ignore result */
-    }
-</script>

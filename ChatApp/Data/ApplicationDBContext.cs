@@ -12,6 +12,7 @@ namespace ChatApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
+        public DbSet<Message> Messages;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
