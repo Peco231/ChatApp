@@ -13,9 +13,10 @@
                 <label> Select a user to chat with: </label>
                 <input type="text" id="inputUserData" list="userList" class="form-control">
                 <datalist id="userList" class="col-lg-4">
-                    @foreach(var user in Model.Users)
+                    @foreach (var user in Model.Users)
                     {
-                        if(user.Id != Model.currentUser.Id) { 
+                        if (user.Id != Model.currentUser.Id)
+                        {
                             <option value=@user.FullName label=@user.Email id=@user.Id></option>
                         }
                     }
