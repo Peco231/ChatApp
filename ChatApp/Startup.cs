@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using ChatApp.Data;
 using ChatApp.Hubs;
 using ChatApp.Models;
+using ChatApp.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,13 +30,22 @@ namespace ChatApp
         
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //var idProvider = new UserProvider();
+
+            // GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
+
+           //app.MapSignalR();
+
             services.AddMvc();
+
             services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
             {
                 builder.AllowAnyMethod().AllowAnyHeader()
                     .WithOrigins("https://localhost:44349/")
                     .AllowCredentials();
             }));
+
             services.AddSignalR();
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -45,6 +56,7 @@ namespace ChatApp
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
+            services.AddTransient<IUserIdProvider, UserIdProvider>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

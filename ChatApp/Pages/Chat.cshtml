@@ -9,16 +9,53 @@
         overflow: scroll;
         background: url('http://subtlepatterns.com/patterns/geometry2.png');
     }
+
 </style>
 <h2>ChatBox</h2>
-<div class="chat-panel panel panel-default">
-    <div class="panel-heading">
+<div class="chat-panel panel panel-default" >
+    <div class="panel-heading " >
         ChatBox using SingalR
         <i class="fa fa-paper-plane fa-fw"></i>
     </div>
-    <div class="panel-body" id="chat" style="height:300px;">
+    <div class="panel-body " id="chat" style="height:300px;">
         <input type="hidden" id="displayname" />
-        <p id="discussion"></p>
+        @{
+            if (Model.messages.Count > 0)
+            {
+                foreach (var msg in Model.messages)
+                {
+                    if (msg.SenderId == Model.currentUser.Id)
+                    {
+                        <div class="row left">
+                            <p class="pull-left peovi">
+                                <small>--@msg.Sender.FirstName :</small>
+                                @msg.Text &nbsp;
+                                <small>--@msg.Time</small>
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row right">
+                            <p class="pull-right peovi ">
+                                <small>--@msg.Sender.FirstName :</small>
+                                @msg.Text &nbsp;
+                                <small>--@msg.Time</small>
+                            </p>
+                        </div>
+                    }
+
+                }
+            }
+            else
+            {
+                <p class="text-center">Say something to your friend :D</p>
+            }
+        }
+
+        <p id="discussion">
+
+        </p>
     </div>
     <div class="panel-footer">
         <div class="input-group">
@@ -29,3 +66,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+</script>

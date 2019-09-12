@@ -1,0 +1,22 @@
+﻿.left{
+    margin-left: 50px;
+}
+
+.right {
+    margin-right: 50px;
+}
+
+.left>p{
+    background-color:azure
+}
+.right>p{
+    background-color:lightcyan
+}
+
+.center{
+
+}
+
+.peovi{
+
+}

@@ -18,5 +18,10 @@ namespace ChatApp.Models
         public virtual ApplicationUser Sender { get; set; }
         public virtual ApplicationUser Receiver { get; set; }
 
+        public Message()
+        {
+            Time = DateTime.Now;
+        }
+
     }
 }
