@@ -11,13 +11,13 @@
         <div class="row">
             <div class="col-lg-4">
                 <label> Select a user to chat with: </label>
-                <input type="text" id="inputUserData" list="userList" class="form-control">
+                <input type="text" list="userList" class="form-control">
                 <datalist id="userList" class="col-lg-4">
                     @foreach (var user in Model.Users)
                     {
                         if (user.Id != Model.currentUser.Id)
                         {
-                            <option value=@user.FullName label=@user.Email id=@user.Id></option>
+                            <option value=@user.Email label=@user.FullName id=@user.Id></option>
                         }
                     }
                 </datalist>
@@ -26,9 +26,30 @@
         <br />
         <div class="row">
             <div class="col-lg-3">
-                <button type="submit" class="btn btn-success">Let's chat</button>
+                <button type="submit" onclick="OnClickLetsChat()" class="btn btn-success">Let's chat</button>
             </div>
         </div>
     </form>
 </div>
+
+<script>
+    function OnClickLetsChat() {
+        var selectedFullName = document.getElementsByTagName("input")[0].value;
+        var selectedId = null;
+        var userList = document.getElementById("userList");
+        var userExist = false;
+
+        for (var i = 0; i < userList.options.length; i++) {
+            if (userList.options[i].value == selectedFullName) {
+                userExist = true;
+                selectedId = userList.options[i].id;
+            } 
+        }
+
+        if (!userExist) 
+            return;
+
+        window.open("/Chat/" + selectedId);
+    }
+</script>
 

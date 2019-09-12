@@ -1,33 +1,31 @@
-﻿@page
+﻿@page "{id}"
 @model ChatApp.Pages.ChatModel
 @{
     ViewData["Title"] = "Chat";
 }
 
-<h1> @Model.currentUser.FirstName, welcome to Chat! </h1>
-<div>
-    <form>
-        <br />
-        <div class="row">
-            <div class="col-lg-4">
-                <label> Select a user to chat with: </label>
-                <input type="text" id="inputUserData" list="userList" class="form-control">
-                <datalist id="userList" class="col-lg-4">
-                    @foreach(var user in Model.Users)
-                    {
-                        if(user.Id != Model.currentUser.Id) { 
-                            <option value=@user.FullName label=@user.Email id=@user.Id></option>
-                        }
-                    }
-                </datalist>
-            </div>
+<style>
+    div.panel-body {
+        overflow: scroll;
+        background: url('http://subtlepatterns.com/patterns/geometry2.png');
+    }
+</style>
+<h2>ChatBox</h2>
+<div class="chat-panel panel panel-default">
+    <div class="panel-heading">
+        ChatBox using SingalR
+        <i class="fa fa-paper-plane fa-fw"></i>
+    </div>
+    <div class="panel-body" id="chat" style="height:300px;">
+        <input type="hidden" id="displayname" />
+        <p id="discussion"></p>
+    </div>
+    <div class="panel-footer">
+        <div class="input-group">
+            <input id="message" type="text" name="message" class="form-control"   placeholder="Type your message here..." />
+            <span class="input-group-btn">
+                <input type="button" class="btn btn-success" id="sendmessage" value="Send">
+            </span>
         </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-3">
-                <button type="submit" class="btn btn-success">Let's chat</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
-

@@ -24,8 +24,12 @@ namespace ChatApp.Pages
         public IList<ApplicationUser> Users;
         public ApplicationUser currentUser;
 
+        public bool UserIsSelected { get; set; }
+        public int IndexOfSelectedUser { get; set; }
+
         public SelectUser(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
+            UserIsSelected = false;
             _db = db;
             _userManager = userManager;
         }
@@ -36,7 +40,6 @@ namespace ChatApp.Pages
 
             var userId = _userManager.GetUserId(HttpContext.User); // id trenutnog usera
             currentUser = await _userManager.FindByIdAsync(userId); // trenutni user
-
         }
 
     }
