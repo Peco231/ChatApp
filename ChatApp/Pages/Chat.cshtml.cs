@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace ChatApp.Pages
 {
@@ -41,6 +42,7 @@ namespace ChatApp.Pages
                     .OrderBy(m => m.Time)
                     .ToListAsync();
         }
+        
 
     }
 }

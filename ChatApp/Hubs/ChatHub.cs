@@ -10,7 +10,7 @@ namespace ChatApp.Hubs
     {
         public void Send(string userId, string message)
         {
-            Clients.User(userId).SendAsync(message);
+            Clients.User(userId).SendAsync("RecieveMessage", userId, message);
         }
     }
 }

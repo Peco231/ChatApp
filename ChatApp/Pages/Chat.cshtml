@@ -19,54 +19,69 @@
     </div>
     <div class="panel-body " id="chat" style="height:300px;">
         <input type="hidden" id="displayname" />
-        @{
-            if (Model.messages.Count > 0)
-            {
-                foreach (var msg in Model.messages)
+        <div id="chatDiv">
+            @{
+                if (Model.messages.Count > 0)
                 {
-                    if (msg.SenderId == Model.currentUser.Id)
+                    foreach (var msg in Model.messages)
                     {
-                        <div class="row left">
-                            <p class="pull-left peovi">
-                                <small>--@msg.Sender.FirstName :</small>
-                                @msg.Text &nbsp;
-                                <small>--@msg.Time</small>
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="row right">
-                            <p class="pull-right peovi ">
-                                <small>--@msg.Sender.FirstName :</small>
-                                @msg.Text &nbsp;
-                                <small>--@msg.Time</small>
-                            </p>
-                        </div>
-                    }
+                        if (msg.SenderId == Model.currentUser.Id)
+                        {
+                            <div class="row left">
+                                <p class="pull-left">
+                                    <small>--@msg.Sender.FirstName :</small>
+                                    @msg.Text &nbsp;
+                                    <small>--@msg.Time</small>
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row right">
+                                <p class="pull-right">
+                                    <small>--@msg.Sender.FirstName :</small>
+                                    @msg.Text &nbsp;
+                                    <small>--@msg.Time</small>
+                                </p>
+                            </div>
+                        }
 
+                    }
+                }
+                else
+                {
+                    <p class="text-center">Say something to your friend :D</p>
                 }
             }
-            else
-            {
-                <p class="text-center">Say something to your friend :D</p>
-            }
-        }
-
+        </div>
         <p id="discussion">
 
         </p>
     </div>
     <div class="panel-footer">
         <div class="input-group">
-            <input id="message" type="text" name="message" class="form-control"   placeholder="Type your message here..." />
+            <input id="userInput" type="text" name="message" class="form-control"   placeholder="Type your message here..." />
             <span class="input-group-btn">
-                <input type="button" class="btn btn-success" id="sendmessage" value="Send">
+                <input type="button" class="btn btn-success" id="sendButton" value="Send">
             </span>
         </div>
     </div>
 </div>
-
 <script>
-    
+
+    var currentUser =
+    {
+        id: @Model.currentUser.Id;
+        firstName: @Model.currentUser.FirstName;
+
+    }
+
+    var user =
+    {
+        id: @Model.Id;
+    }
+
 </script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
