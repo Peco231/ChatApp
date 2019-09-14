@@ -23,5 +23,13 @@ namespace ChatApp.Models
             Time = DateTime.Now;
         }
 
+        public Message(string text, DateTime time, string senderId, string receiverId)
+        {
+            Text = text;
+            Time = DateTime.Now;
+            SenderId = senderId;
+            ReceiverId = receiverId;
+        }
+
     }
 }

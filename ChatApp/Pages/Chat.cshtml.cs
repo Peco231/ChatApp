@@ -17,10 +17,10 @@ namespace ChatApp.Pages
         [BindProperty(SupportsGet = true)]
         public string Id { get; set; } // id od receiver user
 
-        public readonly ApplicationDbContext _db;
+        public ApplicationUser OtherUser { get; set; }
+
+        private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
-        public ApplicationUser currentUser;
-        public List<Message> messages;
 
         public ChatModel(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
@@ -28,21 +28,26 @@ namespace ChatApp.Pages
             _userManager = userManager;
         }
 
-        
+        public List<Message> Messages { get; set; }
+
+        public ApplicationUser CurrentUser { get; set; }
+
         public async Task OnGetAsync()
         {
             var userId = _userManager.GetUserId(HttpContext.User); // id trenutnog usera
-            currentUser = await _userManager.FindByIdAsync(userId); // trenutni user 
+            CurrentUser = await _userManager.FindByIdAsync(userId); // trenutni user 
 
-            messages = await _db.Messages
-                    .Where(m => ( m.SenderId == currentUser.Id && m.ReceiverId == Id)
-                        || (m.SenderId == Id && m.ReceiverId == currentUser.Id))
+            Messages = await _db.Messages
+                    .Where(m => ( m.SenderId == CurrentUser.Id && m.ReceiverId == Id)
+                        || (m.SenderId == Id && m.ReceiverId == CurrentUser.Id))
                     .Include(m => m.Receiver)
                     .Include(m => m.Sender)
                     .OrderBy(m => m.Time)
                     .ToListAsync();
+
+            OtherUser = await _db.Users.FirstOrDefaultAsync(u => u.Id == Id);
         }
-        
+
 
     }
 }
