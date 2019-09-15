@@ -26,8 +26,8 @@ connection.on("ReceiveMessage", function (senderId, recieverId, message) {
         '<div class="row ' + side + '">' +
             '<p class="pull-' + side + '">' +
                 '<small>' + '--' + user.firstName + ': ' + '</small>' 
-                    + msg + '&nbsp;' +
-                '<small>' + '--' + getDateTimeNow() + '</small>' +
+                    + '<font size=4><b>' + msg + '</b></font>' + '&nbsp;' +
+                '<sub>' + '--' + getDateTimeNow() + '</sub>' +
             '</p>' +
         '</div>';
     el.innerHTML = porukaHtml;

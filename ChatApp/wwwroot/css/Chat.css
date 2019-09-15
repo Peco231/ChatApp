@@ -1,15 +1,24 @@
-﻿.left{
-    margin-left: 50px;
+﻿.left {
+    background-color: #98fb9861;
+    padding-left: 50px;
+    padding-top: 10px;
+    
 }
 
 .right {
-    margin-right: 50px;
+    background-color: #afeeee91;
+    padding-right: 50px;
+    padding-top: 10px;
 }
 
-.left>p{
-    background-color:azure
+.center {
+    background-color: palegoldenrod;
+    margin: 0px;
 }
-.right>p{
-    background-color:lightcyan
+
+#chat {
+    padding-top : 0px;
+    padding-bottom : 0px;
 }
+
 

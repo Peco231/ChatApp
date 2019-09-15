@@ -1,34 +1,13 @@
-﻿
-
-@page
-
-<h1> Welcome! </h1>
+﻿@page
+@model IndexModel
 
 
-@*<div class="container">
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                User..........<input type="text" id="userInput" />
-                <br />
-                Message...<input type="text" id="messageInput" />
-                <input type="button" id="sendButton" value="Send Message" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <hr />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                <ul id="messagesList"></ul>
-            </div>
-        </div>
-    </div>*@
-@*<script src="~/lib/signalr/dist/browser/signalr.js"></script>
-    <script src="~/js/chat.js"></script>*@
+@*@if(!Model.Autentificiran)
+{
+    return RedirectToPage("/Identity/Account/Login");
+}*@
 
+@*<h1> @Model.currentUser.FirstName, welcome to ChatApp! </h1>*@
 
+<h1>Welcome!</h1>
+<h3> Click on "Let's chat" in navbar to start a conversation.</h3>

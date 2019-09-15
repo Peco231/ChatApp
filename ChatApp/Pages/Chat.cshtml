@@ -28,12 +28,12 @@
                     {
                         if (msg.SenderId == Model.CurrentUser.Id)
                         {
-                            <div class="row left">
-                                <p class="pull-left">
+                            <div class="row left" >
+                                <p class="pull-left" >
                                     <small>--@msg.Sender.FirstName:</small>
-                                    @msg.Text 
-                                    <small>--@msg.Time</small>
-                                </p>
+                                    <font size="4"><b>@msg.Text</b></font>
+                                    <sub>--@msg.Time</sub>
+                                </p>                          
                             </div>
                         }
                         else
@@ -41,8 +41,8 @@
                             <div class="row right">
                                 <p class="pull-right">
                                     <small>--@msg.Sender.FirstName:</small>
-                                    @msg.Text 
-                                    <small>--@msg.Time</small>
+                                        <font size="4"><b>@msg.Text</b></font> 
+                                    <sub>--@msg.Time</sub>
                                 </p>
                             </div>
                         }
@@ -51,7 +51,9 @@
                 }
                 else
                 {
-                    <p class="text-center">Say something to your friend :D</p>
+                    <div>
+                        <p class="text-center center">Say something to your friend :D</p>
+                    </div>
                 }
             }
         </div>
