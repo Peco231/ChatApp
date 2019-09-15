@@ -12,9 +12,11 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChatApp.Pages
 {
+    [Authorize]
     public class SelectUser : PageModel
     {
         private readonly ApplicationDbContext _db;  // baza

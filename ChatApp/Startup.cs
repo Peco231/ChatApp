@@ -30,13 +30,6 @@ namespace ChatApp
         
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //var idProvider = new UserProvider();
-
-            // GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
-
-           //app.MapSignalR();
-
             services.AddMvc();
 
             services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>

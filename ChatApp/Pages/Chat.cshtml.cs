@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChatApp.Data;
 using ChatApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,6 +13,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ChatApp.Pages
 {
+    [Authorize]
     public class ChatModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
