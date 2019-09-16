@@ -49,7 +49,5 @@ namespace ChatApp.Pages
 
             OtherUser = await _db.Users.FirstOrDefaultAsync(u => u.Id == Id);
         }
-
-
     }
 }

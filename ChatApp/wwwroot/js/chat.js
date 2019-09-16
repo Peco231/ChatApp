@@ -30,6 +30,7 @@ connection.on("ReceiveMessage", function (senderId, recieverId, message) {
                 '<sub>' + '--' + getDateTimeNow() + '</sub>' +
             '</p>' +
         '</div>';
+
     el.innerHTML = porukaHtml;
     document.getElementById("chatDiv").appendChild(el.firstChild);
 });
@@ -51,8 +52,6 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     document.getElementById("userInput").value = "";
 
     setTimeout(function () { document.getElementById("chat").scrollTop = 100000; }, 100);
-    
-
 });
 
 function getDateTimeNow() {
