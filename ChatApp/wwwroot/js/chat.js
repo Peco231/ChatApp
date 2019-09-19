@@ -33,6 +33,7 @@ connection.on("ReceiveMessage", function (senderId, recieverId, message) {
 
     el.innerHTML = porukaHtml;
     document.getElementById("chatDiv").appendChild(el.firstChild);
+    setTimeout(function () { document.getElementById("chat").scrollTop = 100000; }, 100);
 });
 
 connection.start().then(function () {
@@ -49,9 +50,13 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     });
     event.preventDefault();
 
-    document.getElementById("userInput").value = "";
+    var userInput = document.getElementById("userInput");
+    userInput.value = "";
+    userInput.focus();
+    userInput.select();
 
     setTimeout(function () { document.getElementById("chat").scrollTop = 100000; }, 100);
+
 });
 
 function getDateTimeNow() {
@@ -80,3 +85,10 @@ function getDateTimeNow() {
     return formatted_date;
 }
 
+var input = document.getElementById("userInput");
+input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("sendButton").click();
+    }
+});
