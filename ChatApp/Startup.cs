@@ -1,21 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ChatApp.Data;
 using ChatApp.Hubs;
 using ChatApp.Models;
 using ChatApp.Providers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace ChatApp
 {
@@ -35,7 +28,7 @@ namespace ChatApp
             services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
             {
                 builder.AllowAnyMethod().AllowAnyHeader()
-                    .WithOrigins("https://localhost:44349/")
+                    .WithOrigins("https://localhost:44349/") // TODO: Move to configurations
                     .AllowCredentials();
             }));
 

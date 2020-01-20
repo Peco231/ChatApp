@@ -4,7 +4,7 @@
     ViewData["Title"] = "Chat";
 }
 
-<h1> @Model.currentUser.FirstName, You can now choose who you want to chat with :D </h1>
+<h1> @Model.CurrentUser.FirstName, You can now choose who you want to chat with :D </h1>
 <div>
     <form>
         <br />
@@ -15,7 +15,7 @@
                 <datalist id="userList" class="col-lg-4">
                     @foreach (var user in Model.Users)
                     {
-                        if (user.Id != Model.currentUser.Id)
+                        if (user.Id != Model.CurrentUser.Id)
                         {
                             <option value=@user.Email label=@user.FullName id=@user.Id></option>
                         }
@@ -26,7 +26,7 @@
         <br />
         <div class="row">
             <div class="col-lg-3">
-                <button type="submit" onclick="OnClickLetsChat()" class="btn btn-success">@Model.currentUser.FirstName, Let's chat </button>
+                <button type="submit" onclick="OnClickLetsChat()" class="btn btn-success">@Model.CurrentUser.FirstName, Let's chat </button>
             </div>
         </div>
     </form>

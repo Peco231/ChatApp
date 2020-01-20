@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ChatApp.Models;
+﻿using ChatApp.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace ChatApp.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        public ApplicationUser currentUser;
-        public bool Autentificiran { get; set; }
-
+        
         public IndexModel( UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            Autentificiran = false;
         }
+
+        // TODO: Maybe should be removed
+        public ApplicationUser CurrentUser;
+
+        public bool IsAuthenticated => CurrentUser != null;
 
         public async Task OnGetAsync()
         {
-            var userId = _userManager.GetUserId(HttpContext.User); // id trenutnog usera
-            if(userId != null)
-            {
-                Autentificiran = true;
-            }
-            currentUser = await _userManager.FindByIdAsync(userId); // trenutni user
+            var userId = _userManager.GetUserId(HttpContext.User); // Current User Id
+            CurrentUser = await _userManager.FindByIdAsync(userId); // Current User
         }
     }
 }
