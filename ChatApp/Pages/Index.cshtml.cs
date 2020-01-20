@@ -14,7 +14,6 @@ namespace ChatApp.Pages
             _userManager = userManager;
         }
 
-        // TODO: Maybe should be removed
         public ApplicationUser CurrentUser;
 
         public bool IsAuthenticated => CurrentUser != null;
